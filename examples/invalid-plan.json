@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "plan_id": "stale-over-budget-plan",
+  "evaluated_at": "2026-10-09T21:30:00-04:00",
+  "model_fit_passed": false,
+  "residual_bias_ppm": 18000,
+  "decoder_latency_ms": 45,
+  "epochs": [
+    { "kind": "hardware", "value": "ibm-sim-v2" },
+    { "kind": "calibration", "value": "cal-old", "observed_at": "2026-10-07T20:00:00-04:00" },
+    { "kind": "compiler", "value": "qiskit-3.1.0" },
+    { "kind": "decoder", "value": "pymatching-2.4.0" },
+    { "kind": "noise_model", "value": "unsealed-noise" }
+  ],
+  "stages": [
+    {
+      "id": "sample",
+      "depends_on": [],
+      "failure_probability_ppm": 35000,
+      "cost_microunits": 120000000,
+      "shots": 2500000,
+      "duration_ms": 1900000,
+      "epoch_refs": { "hardware": "ibm-sim-v1", "calibration": "cal-old" }
+    }
+  ]
+}

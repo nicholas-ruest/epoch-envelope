@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "plan_id": "simulated-surface-code-17",
+  "evaluated_at": "2026-10-09T21:30:00-04:00",
+  "model_fit_passed": true,
+  "residual_bias_ppm": 4200,
+  "decoder_latency_ms": 8,
+  "epochs": [
+    { "kind": "hardware", "value": "ibm-sim-v3" },
+    { "kind": "calibration", "value": "cal-2026-10-09-a", "observed_at": "2026-10-09T20:45:00-04:00" },
+    { "kind": "compiler", "value": "qiskit-3.2.1" },
+    { "kind": "decoder", "value": "pymatching-2.4.0" },
+    { "kind": "noise_model", "value": "sealed-noise-2026-10-09" }
+  ],
+  "stages": [
+    {
+      "id": "compile",
+      "depends_on": [],
+      "failure_probability_ppm": 2000,
+      "cost_microunits": 1000000,
+      "shots": 0,
+      "duration_ms": 2000,
+      "epoch_refs": { "compiler": "qiskit-3.2.1", "calibration": "cal-2026-10-09-a" }
+    },
+    {
+      "id": "sample",
+      "depends_on": ["compile"],
+      "failure_probability_ppm": 9000,
+      "cost_microunits": 50000000,
+      "shots": 1200000,
+      "duration_ms": 600000,
+      "epoch_refs": { "hardware": "ibm-sim-v3", "calibration": "cal-2026-10-09-a", "noise_model": "sealed-noise-2026-10-09" }
+    },
+    {
+      "id": "decode",
+      "depends_on": ["sample"],
+      "failure_probability_ppm": 3000,
+      "cost_microunits": 5000000,
+      "shots": 0,
+      "duration_ms": 120000,
+      "epoch_refs": { "decoder": "pymatching-2.4.0", "calibration": "cal-2026-10-09-a" }
+    },
+    {
+      "id": "validate",
+      "depends_on": ["decode"],
+      "failure_probability_ppm": 1000,
+      "cost_microunits": 2000000,
+      "shots": 100000,
+      "duration_ms": 30000,
+      "epoch_refs": { "noise_model": "sealed-noise-2026-10-09" }
+    }
+  ]
+}

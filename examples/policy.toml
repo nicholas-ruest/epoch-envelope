@@ -1,0 +1,18 @@
+schema_version = 1
+
+[limits]
+max_failure_probability_ppm = 30000
+max_residual_bias_ppm = 10000
+max_cost_microunits = 100000000
+max_shots = 2000000
+max_critical_path_ms = 1800000
+max_decoder_latency_ms = 20
+max_calibration_age_seconds = 86400
+require_model_fit = true
+required_epoch_kinds = ["hardware", "calibration", "compiler", "decoder", "noise_model"]
+
+[expected_epochs]
+hardware = "ibm-sim-v3"
+compiler = "qiskit-3.2.1"
+decoder = "pymatching-2.4.0"
+noise_model = "sealed-noise-2026-10-09"
